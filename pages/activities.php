@@ -57,7 +57,7 @@
             <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                 <!-- Activity Card 1 -->
                 <div class="bg-white rounded-lg shadow-lg overflow-hidden">
-                    <img src="/api/placeholder/400/300" alt="Paris City Tour" class="w-full h-48 object-cover">
+                    <img src="img/paris.jpg" alt="Paris City Tour" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <div>
