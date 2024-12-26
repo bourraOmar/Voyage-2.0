@@ -55,7 +55,7 @@
             <!-- Right side - Login form -->
             <div class="w-full md:w-1/2 max-w-md">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <form class="space-y-6">
+                    <form class="space-y-6" method="postpull">
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
