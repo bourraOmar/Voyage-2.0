@@ -1,7 +1,7 @@
 <?php 
 class DBconnect {
 
-    protected $dsn = 'mysql:host=192.168.8.187;dbname=voyage2';
+    protected $dsn = 'mysql:host=localhost;dbname=voyage2';
     protected $user = 'root';
     protected $pass = "";
     public $pdo;
