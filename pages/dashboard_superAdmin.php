@@ -1,7 +1,8 @@
 <?php
 require_once '../Activities/Activities_Create.php';
-
+require_once '../Activities/stats_management.php';
 $showall = new Activities();
+$userobject = new stats_Manager();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,35 +27,51 @@ $showall = new Activities();
             </div>
         </div>
 
-        <!-- Stats Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+         <!-- Stats Cards -->
+         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
             <div class="bg-white p-6 rounded-lg shadow">
                 <div class="flex items-center justify-between">
                     <h3 class="text-gray-500">Total Users</h3>
                     <i class="fas fa-users text-blue-500"></i>
                 </div>
-                <p class="text-2xl font-bold mt-2">1,234</p>
+                <p class="text-2xl font-bold mt-2">
+                    <?php
+                    $userobject->CountUser();
+                    ?>
+                </p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow">
                 <div class="flex items-center justify-between">
                     <h3 class="text-gray-500">Active Reservations</h3>
                     <i class="fas fa-calendar-check text-green-500"></i>
                 </div>
-                <p class="text-2xl font-bold mt-2">845</p>
+                <p class="text-2xl font-bold mt-2">
+                <?php
+                    $userobject->CountActiveReservation();
+                ?>
+                </p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow">
                 <div class="flex items-center justify-between">
                     <h3 class="text-gray-500">Refused Reservations</h3>
                     <i class="fas fa-ban text-red-500"></i>
                 </div>
-                <p class="text-2xl font-bold mt-2">56</p>
+                <p class="text-2xl font-bold mt-2">
+                <?php
+                    $userobject->CountRefusedReservation();
+                ?>
+                </p>
             </div>
             <div class="bg-white p-6 rounded-lg shadow">
                 <div class="flex items-center justify-between">
                     <h3 class="text-gray-500">Banned Users</h3>
                     <i class="fas fa-user-slash text-orange-500"></i>
                 </div>
-                <p class="text-2xl font-bold mt-2">23</p>
+                <p class="text-2xl font-bold mt-2">
+                <?php
+                    $userobject->CountBannedUser();
+                ?>
+                </p>
             </div>
         </div>
 

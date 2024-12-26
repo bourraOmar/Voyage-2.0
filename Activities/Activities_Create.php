@@ -26,9 +26,7 @@ class Activities{
         $stmt->bindparam(':price', $this->price);
         $stmt->bindparam(':date_activite', $this->date_activite);
 
-        if($stmt->execute()){
-            echo 'done';
-        }
+        $stmt->execute();
         return $pdo;
     }
     function ShowActivitiesOndashboard(){
