@@ -1,14 +1,20 @@
 <?php 
-$dsn = 'mysql:host=192.168.8.142;dbname=voyage2';
-$user = 'root';
-$pass = "";
+class DBconnect {
 
-try {
+    protected $dsn = 'mysql:host=192.168.8.187;dbname=voyage2';
+    protected $user = 'root';
+    protected $pass = "";
+    private $pdo;
 
-    $conn = new PDO($dsn, $user, $pass);
-
-
-} catch (PDOException $e) {
-    echo 'Error: ' . $e->getMessage();
+    function connectpdo(){
+        try{
+            $pdo = new PDO($this->dsn, $this->user, $this->pass);
+        }
+        catch(PDOException $e){
+            echo 'err :' . $e->getMessage();
+        }
+    }
 }
+$pdo = new DBconnect();
+$pdo->connectpdo();
 ?>
