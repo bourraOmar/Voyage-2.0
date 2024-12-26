@@ -30,6 +30,13 @@ CREATE TABLE superAdmin(
   PRIMARY KEY (idSuperAdmin)
 );
 
+CREATE TABLE reservation(
+  idReservation int NOT NULL,
+  date_activite datetime,
+  status enum('waiting','accepte','refuse'),
+  PRIMARY KEY (idActivity)
+);
+
 CREATE TABLE activity(
   idActivity int NOT NULL,
   nom VARCHAR(100),
@@ -39,11 +46,4 @@ CREATE TABLE activity(
   idReservation int,
   PRIMARY KEY (idActivity),
   FOREIGN KEY (idReservation) REFERENCES reservation(idReservation)
-);
-
-CREATE TABLE reservation(
-  idReservation int NOT NULL,
-  date_activite datetime,
-  status enum('waiting','accepte','refuse'),
-  PRIMARY KEY (idActivity)
 );
