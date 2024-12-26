@@ -1,3 +1,9 @@
+<?php
+require_once '../Activities/Activities_Create.php';
+
+$showall = new Activities();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,6 +111,37 @@
                                 </button>
                             </td>
                         </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Activities -->
+        <div class="bg-white rounded-lg shadow mt-4 ">
+            <div class="p-4 border-b ">
+                <h2 class="text-xl font-bold">Recent Activities</h2>
+                <div class="flex justify-end">
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                        <i class="fas fa-plus mr-2"></i>Add Activitie
+                    </button>
+                </div>
+            </div>
+            <div class="p-4">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-gray-50">
+                            <th class="p-3 text-left">ID</th>
+                            <th class="p-3 text-left">Activity</th>
+                            <th class="p-3 text-left">Description</th>
+                            <th class="p-3 text-left">Price</th>
+                            <th class="p-3 text-left">Date Activity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- <tr></tr> -->
+                        <?php 
+                        $showall->ShowActivities();
+                        ?>
                     </tbody>
                 </table>
             </div>
