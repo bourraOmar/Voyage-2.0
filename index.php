@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="hidden lg:mt-0 lg:col-span-5 lg:flex">
-                <img src="/api/placeholder/600/400" alt="Tropical beach view" class="rounded-lg shadow-lg">
+                <img src="../Voyage-2.0/imgs/pexels-catiamatos-984888.jpg" alt="Tropical beach view" class="rounded-lg shadow-lg">
             </div>
         </div>
     </section>
@@ -75,7 +75,7 @@
             <div class="grid gap-8 md:grid-cols-3">
                 <!-- Destination 1 -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img src="/api/placeholder/400/300" alt="Paris" class="w-full h-64 object-cover">
+                    <img src="./imgs/pexels-aysegul-vatansever-2147556894-29890132.jpg" alt="Paris" class="w-full h-64 object-cover">
                     <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900">
                         <h3 class="text-xl font-bold text-white">Paris, France</h3>
                         <p class="text-blue-100">The City of Lights</p>
@@ -83,7 +83,7 @@
                 </div>
                 <!-- Destination 2 -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img src="/api/placeholder/400/300" alt="Bali" class="w-full h-64 object-cover">
+                    <img src="./imgs/pexels-eberhardgross-19779494.jpg" alt="Bali" class="w-full h-64 object-cover">
                     <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900">
                         <h3 class="text-xl font-bold text-white">Bali, Indonesia</h3>
                         <p class="text-blue-100">Island Paradise</p>
@@ -91,7 +91,7 @@
                 </div>
                 <!-- Destination 3 -->
                 <div class="relative overflow-hidden rounded-lg shadow-lg group">
-                    <img src="/api/placeholder/400/300" alt="Tokyo" class="w-full h-64 object-cover">
+                    <img src="./imgs/pexels-clement-proust-363898785-14590086.jpg" alt="Tokyo" class="w-full h-64 object-cover">
                     <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-blue-900">
                         <h3 class="text-xl font-bold text-white">Tokyo, Japan</h3>
                         <p class="text-blue-100">Modern Meets Traditional</p>
@@ -108,19 +108,19 @@
             <div class="grid gap-8 md:grid-cols-3">
                 <!-- Feature 1 -->
                 <div class="p-6 bg-white rounded-lg shadow-lg border-t-4 border-blue-600">
-                    <img src="/api/placeholder/80/80" alt="Flight icon" class="w-16 h-16 mb-4">
+                    <img src="./imgs/pexels-jeffrey-czum-254391-2253445.jpg" alt="Flight icon" class="w-16 h-16 mb-4">
                     <h3 class="mb-2 text-xl font-bold text-blue-900">Flights</h3>
                     <p class="text-gray-600">Book your flights from a wide selection of airlines at competitive prices.</p>
                 </div>
                 <!-- Feature 2 -->
                 <div class="p-6 bg-white rounded-lg shadow-lg border-t-4 border-blue-600">
-                    <img src="/api/placeholder/80/80" alt="Hotel icon" class="w-16 h-16 mb-4">
+                    <img src="./imgs/pexels-vince-2265876.jpg" alt="Hotel icon" class="w-16 h-16 mb-4">
                     <h3 class="mb-2 text-xl font-bold text-blue-900">Hotels</h3>
                     <p class="text-gray-600">Find the perfect accommodation for your stay, from budget to luxury.</p>
                 </div>
                 <!-- Feature 3 -->
                 <div class="p-6 bg-white rounded-lg shadow-lg border-t-4 border-blue-600">
-                    <img src="/api/placeholder/80/80" alt="Tour icon" class="w-16 h-16 mb-4">
+                    <img src="./imgs/pexels-marek-piwnicki-3907296-13922593.jpg" alt="Tour icon" class="w-16 h-16 mb-4">
                     <h3 class="mb-2 text-xl font-bold text-blue-900">Tours</h3>
                     <p class="text-gray-600">Discover guided tour packages for an unforgettable experience.</p>
                 </div>
@@ -134,7 +134,7 @@
             <div class="max-w-screen-md mx-auto text-center">
                 <h2 class="mb-4 text-3xl font-extrabold text-white">Ready to Start Your Journey?</h2>
                 <p class="mb-8 text-blue-100">Sign up now and get access to exclusive travel deals and personalized recommendations.</p>
-                <a href="#" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-blue-900 bg-white rounded-lg hover:bg-blue-100 focus:ring-4 focus:ring-blue-300">
+                <a href="./autentification/signUp.php" class="inline-flex items-center justify-center px-5 py-3 text-base font-medium text-blue-900 bg-white rounded-lg hover:bg-blue-100 focus:ring-4 focus:ring-blue-300">
                     Create an Account
                 </a>
             </div>
