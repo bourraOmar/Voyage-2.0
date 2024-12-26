@@ -85,9 +85,11 @@ class Activities{
                         </div>
                         <div class="flex items-center justify-between">
                             <span class="text-2xl font-bold text-blue-900">'. $row['price'] .' $</span>
+                        <a href="../Activities/Activities_Create.php?activityId='. $row['activity_id'] .'">
                             <button class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors">
                                 Reserve Now
                             </button>
+                        </a>
                         </div>
                     </div>
                 </div>';
