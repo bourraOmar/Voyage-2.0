@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <?php 
 require_once '../Activities/Activities_Create.php';
 $activity = new Activities();
@@ -41,11 +46,16 @@ $activity = new Activities();
                 </ul>
             </div>
 
-            <!-- Auth Buttons -->
-            <div class="hidden md:flex items-center space-x-3">
-                <a href="../autentification/login.php" class="text-white hover:text-blue-200 font-medium rounded-lg text-sm px-4 py-2">Login</a>
-                <a href="../autentification/signUp.php" class="text-blue-900 bg-white hover:bg-blue-100 font-medium rounded-lg text-sm px-4 py-2">Sign Up</a>
+            <?php if($_SESSION["role"]){ ?>
+            <div class="">
+                <a href=""><img width="25px" class="bg-white rounded-full" src="../imgs/profile-major.svg" alt=""></a>
             </div>
+            <?php }else{ ?>
+            <div class="hidden md:flex items-center space-x-3">
+                <a href="../Voyage-2.0/autentification/login.php" class="text-white hover:text-blue-200 font-medium rounded-lg text-sm px-4 py-2">Login</a>
+                <a href="../Voyage-2.0/autentification/signUp.php" class="text-blue-900 bg-white hover:bg-blue-100 font-medium rounded-lg text-sm px-4 py-2">Sign Up</a>
+            </div>
+            <?php } ?>
         </div>
     </nav>
 

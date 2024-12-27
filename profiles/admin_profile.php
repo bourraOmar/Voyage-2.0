@@ -1,3 +1,8 @@
+<?php
+    session_start();
+    if($_SESSION['email'] == 'admin@gmail.com' && $_SESSION['role'] == 'admin'){
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -118,5 +123,11 @@
             </div>
         </div>
     </div>
+
+<?php
+    }else{
+        header('index.php');
+    }
+?>
 </body>
 </html>
