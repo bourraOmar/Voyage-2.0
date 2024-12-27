@@ -35,7 +35,7 @@ class stats_Manager {
         $this->pdo = new DBconnect();
         $pdo = $this->pdo->connectpdo();
 
-        $sql = "SELECT COUNT(*) AS reserv_count FROM reservation WHERE status = 'waiting' OR status = 'accepte'";
+        $sql = "SELECT COUNT(*) AS reserv_count FROM reservation WHERE status = 'refuse'";
         
         $stmt = $pdo->query($sql);
         if($stmt){
