@@ -78,16 +78,16 @@
             <!-- Right side - Sign Up form -->
             <div class="w-full md:w-1/2 max-w-md">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <form class="space-y-6">
+                    <form class="space-y-6" method="post">
                         <!-- Name Fields -->
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label for="firstName" class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
-                                <input type="text" id="firstName" name="firstName" placeholder="First Name" class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                                <input type="text" id="firstName" name="nom" placeholder="First Name" class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
                             </div>
                             <div>
                                 <label for="lastName" class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Last Name" class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
+                                <input type="text" id="lastName" name="prenom" placeholder="Last Name" class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500" required>
                             </div>
                         </div>
 
@@ -133,6 +133,24 @@
             </div>
         </div>
     </section>
+
+    <?php
+    require_once '../connection/conn.php';
+    require_once 'supreAdmin.php';
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $nom = $_POST['nom'];
+            $prenom = $_POST['prenom'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+        
+        $registement = new superAdmin();
+        if($registement->registement($nom, $prenom, $email, $password)){
+            header('Location: ../autentification/login.php');
+            exit();
+        }
+        }
+    ?>
 
     <!-- Footer -->
     <footer class="bg-blue-950 text-white">
