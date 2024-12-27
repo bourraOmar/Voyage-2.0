@@ -1,8 +1,8 @@
 <?php
 require_once '../connection/conn.php';
-require_once 'utilisateur.php';
+require_once '../classes/utilisateur.php';
 
-class superAdmin extends utilisateur
+class superAdmin extends User
 {
     protected $role = "superAdmin";
     protected $status = "active";

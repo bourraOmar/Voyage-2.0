@@ -1,8 +1,10 @@
 <?php
+
+session_start();
+
 require_once '../connection/conn.php';
 require_once '../classes/utilisateur.php';
 
-session_start();
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
@@ -11,7 +13,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $user = new User();
 
     if ($user->authenticate($email, $password)) {
-        header("Location: ../index.php");
         exit();
     } else {
         $error_message = "Invalid email or password.";

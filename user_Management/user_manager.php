@@ -7,7 +7,7 @@ class Users_manager{
         $this->pdo = new DBconnect();
         $pdo = $this->pdo->connectpdo();
 
-        $sql = "SELECT u.User_id, u.nom, u.prenom, u.email, r.titre, u.status 
+        $sql = "SELECT u.user_id, u.nom, u.prenom, u.email, r.titre, u.status 
                 FROM user u 
                 LEFT JOIN role r 
                 ON u.role_id = r.role_id;";
@@ -30,7 +30,7 @@ class Users_manager{
                             }
                         
                         echo '<td class="p-3">
-                            <a href="../user_Management/user_manager.php?userid='. $row['User_id'] .'">
+                            <a href="../user_Management/user_manager.php?userid='. $row['user_id'] .'">
                                 <button class="text-red-500 hover:text-red-700 mr-2">
                                     <i class="fas fa-ban"></i>
                                 </button>
@@ -48,7 +48,7 @@ class Users_manager{
 
         $sql = "SELECT r.reservation_id, u.nom, u.prenom, a.nom AS activite_nom, r.date_activite, r.status
                 FROM reservation r
-                LEFT JOIN user u ON r.User_id = u.User_id
+                LEFT JOIN user u ON r.user_id = u.user_id
                 LEFT JOIN activity a ON r.activity_id = a.activity_id";
 
         $stmt = $pdo->query($sql);
@@ -90,13 +90,19 @@ class Users_manager{
 
         $sql = "UPDATE user 
                 SET status = 'blocked'
-                WHERE User_id = :userid";
+                WHERE user_id = :userid";
         $stmt = $pdo->prepare($sql);
         $stmt->bindParam(':userid', $userID);
         if($stmt->execute()){
             header("location:../pages/dashboard_superAdmin.php");
             exit();
         }
+    }
+    function userDisconnect(){
+        session_start();
+        session_destroy();
+        header('Location: ../index.php');
+        exit();
     }
 }
 
@@ -110,5 +116,8 @@ if(isset($_GET['userid'])){
     $userid = $_GET['userid'];
     $usermanager->BannedUser($userid);
 }
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $usermanage = new Users_manager();
+    $usermanage->userDisconnect();
+}
 ?>
-<a href=""></a>

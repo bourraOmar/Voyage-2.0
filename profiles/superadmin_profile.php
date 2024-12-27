@@ -41,7 +41,7 @@ $activity = new Activities();
                         </div>
                         <div class="pt-16 text-center">
                             <h2 class="text-2xl font-bold text-gray-800"><?php echo $_SESSION["nom"] . " " . $_SESSION["prenom"] ?></h2>
-                            <p class="text-blue-600 font-semibold">Admin</p>
+                            <p class="text-blue-600 font-semibold">Super Admin</p>
                             <p class="text-gray-500 mt-2"><?php echo $_SESSION["email"] ?></p>
                         </div>
                     </div>

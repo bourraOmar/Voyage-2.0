@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../connection/conn.php';
 
 class User {
@@ -39,10 +40,23 @@ class User {
         if ($stmt->rowCount() > 0) {
             $user = $stmt->fetch(PDO::FETCH_ASSOC);
             if (password_verify($password, $user['password'])) {
+                
+                $_SESSION["user_id"] = $user['user_id'];
                 $_SESSION["email"] = $user['email'];
                 $_SESSION["role"] = $user['role_id'];
                 $_SESSION["nom"] = $user['nom'];
                 $_SESSION["prenom"] = $user['prenom'];
+
+                if ($user['email'] == 'superadmin@gmail.com') {
+                    header("Location: ../pages/dashboard_superAdmin.php");
+                    exit();
+                } else if ($user['email'] == 'admin@gmail.com') {
+                    header("Location: ../pages/dashboard_Admin.php");
+                    exit();
+                } else {
+                    header("Location: ../index.php");
+                    exit();
+                }
                 return true;
             } else {
                 return false;
