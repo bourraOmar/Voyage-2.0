@@ -1,8 +1,11 @@
 <?php
 require_once '../Activities/Activities_Create.php';
 require_once '../Activities/stats_management.php';
+require_once '../user_Management/user_manager.php';
+
 $showall = new Activities();
-$userobject = new stats_Manager();
+$statsObject = new stats_Manager();
+$userManager = new Users_manager();
 ?>
 
 <!DOCTYPE html>
@@ -37,7 +40,7 @@ $userobject = new stats_Manager();
                 </div>
                 <p class="text-2xl font-bold mt-2">
                     <?php
-                    $userobject->CountUser();
+                    $statsObject->CountUser();
                     ?>
                 </p>
             </div>
@@ -48,7 +51,7 @@ $userobject = new stats_Manager();
                 </div>
                 <p class="text-2xl font-bold mt-2">
                 <?php
-                    $userobject->CountActiveReservation();
+                    $statsObject->CountActiveReservation();
                 ?>
                 </p>
             </div>
@@ -59,7 +62,7 @@ $userobject = new stats_Manager();
                 </div>
                 <p class="text-2xl font-bold mt-2">
                 <?php
-                    $userobject->CountRefusedReservation();
+                    $statsObject->CountRefusedReservation();
                 ?>
                 </p>
             </div>
@@ -70,7 +73,7 @@ $userobject = new stats_Manager();
                 </div>
                 <p class="text-2xl font-bold mt-2">
                 <?php
-                    $userobject->CountBannedUser();
+                    $statsObject->CountBannedUser();
                 ?>
                 </p>
             </div>
@@ -94,40 +97,9 @@ $userobject = new stats_Manager();
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-t">
-                            <td class="p-3">#12345</td>
-                            <td class="p-3">Mary Wilson</td>
-                            <td class="p-3">Paris-London Flight</td>
-                            <td class="p-3">Dec 26, 2024</td>
-                            <td class="p-3">
-                                <span class="px-2 py-1 bg-yellow-100 text-yellow-800 rounded-full">Pending</span>
-                            </td>
-                            <td class="p-3">
-                                <button class="text-green-500 hover:text-green-700 mr-2">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr class="border-t">
-                            <td class="p-3">#12346</td>
-                            <td class="p-3">James Brown</td>
-                            <td class="p-3">Luxor Hotel</td>
-                            <td class="p-3">Dec 28, 2024</td>
-                            <td class="p-3">
-                                <span class="px-2 py-1 bg-red-100 text-red-800 rounded-full">Refused</span>
-                            </td>
-                            <td class="p-3">
-                                <button class="text-green-500 hover:text-green-700 mr-2">
-                                    <i class="fas fa-check"></i>
-                                </button>
-                                <button class="text-red-500 hover:text-red-700">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                        $userManager->ShowReservations(); 
+                        ?>
                     </tbody>
                 </table>
             </div>
@@ -167,7 +139,7 @@ $userobject = new stats_Manager();
         </div>
     </div>
 
-<!-- modal -->
+<!-- activityModal -->
     <div id="activityModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
     <div class="bg-white rounded-lg w-full max-w-lg p-6 m-4">
         <div class="flex justify-between items-center mb-6">
