@@ -1,3 +1,24 @@
+<?php
+require_once '../connection/conn.php';
+require_once '../classes/utilisateur.php';
+
+session_start();
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $user = new User();
+
+    if ($user->authenticate($email, $password)) {
+        header("Location: ../index.php");
+        exit();
+    } else {
+        $error_message = "Invalid email or password.";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +76,7 @@
             <!-- Right side - Login form -->
             <div class="w-full md:w-1/2 max-w-md">
                 <div class="bg-white p-8 rounded-lg shadow-lg">
-                    <form class="space-y-6" method="postpull">
+                    <form class="space-y-6" method="POST">
                         <!-- Email Input -->
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
@@ -102,23 +123,6 @@
             </div>
         </div>
     </section>
-
-    <?php
-    require_once '../connection/conn.php';
-    require_once 'utilisateur.php';
-
-    $authenticate = new utilisateur();
-    if($authenticate->authenticate($email, $password)){
-        if($_SERVER['email'] = 'admin@hgmail.com'){
-            header('Location: ../pages/dashboard_Admin.php');
-            exit();
-        }else{
-            header('Location: ../pages/user_profil.php');
-            exit();
-        }
-    }
-
-    ?>
 
     <!-- Footer -->
     <footer class="bg-blue-950 text-white">

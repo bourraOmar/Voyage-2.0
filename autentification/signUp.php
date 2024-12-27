@@ -1,3 +1,23 @@
+<?php
+require_once '../connection/conn.php';
+require_once '../classes/utilisateur.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $nom = $_POST['nom'];
+    $prenom = $_POST['prenom'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $user = new User();
+
+    if ($user->register($nom, $prenom, $email, $password)) {
+        header("Location: ../autentification/login.php");
+        exit();
+    } else {
+        $error_message = "An error occurred or the email is already taken.";
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
