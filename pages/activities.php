@@ -1,11 +1,8 @@
 <?php
-session_start();
-
-?>
-
-<?php 
 require_once '../Activities/Activities_Create.php';
 $activity = new Activities();
+
+session_start();
 
 ?>
 
@@ -26,7 +23,6 @@ $activity = new Activities();
             <a href="#" class="flex items-center space-x-3">
                 <span class="self-center text-2xl font-bold text-white">TravelEase</span>
             </a>
-
             <!-- Mobile menu button -->
             <button type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-white rounded-lg md:hidden hover:bg-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-300">
                 <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
@@ -46,14 +42,14 @@ $activity = new Activities();
                 </ul>
             </div>
 
-            <?php if($_SESSION["role"]){ ?>
+            <?php if(isset($_SESSION["role"])){ ?>
             <div class="">
-                <a href=""><img width="25px" class="bg-white rounded-full" src="../imgs/profile-major.svg" alt=""></a>
+                <a href="../profiles/user_profile.php"><img width="25px" class="bg-white rounded-full" src="../imgs/profile-major.svg" alt=""></a>
             </div>
             <?php }else{ ?>
             <div class="hidden md:flex items-center space-x-3">
-                <a href="../Voyage-2.0/autentification/login.php" class="text-white hover:text-blue-200 font-medium rounded-lg text-sm px-4 py-2">Login</a>
-                <a href="../Voyage-2.0/autentification/signUp.php" class="text-blue-900 bg-white hover:bg-blue-100 font-medium rounded-lg text-sm px-4 py-2">Sign Up</a>
+                <a href="../autentification/login.php" class="text-white hover:text-blue-200 font-medium rounded-lg text-sm px-4 py-2">Login</a>
+                <a href="../autentification/signUp.php" class="text-blue-900 bg-white hover:bg-blue-100 font-medium rounded-lg text-sm px-4 py-2">Sign Up</a>
             </div>
             <?php } ?>
         </div>
@@ -70,10 +66,21 @@ $activity = new Activities();
     <!-- Activities Grid -->
     <section class="py-12">
         <div class="max-w-screen-xl px-4 mx-auto">
-            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                
-                <?php 
-                $activity->ShowActivitiesForUsers();
+            
+                <?php
+                if(isset($_SESSION['user_id'])){
+                    echo '<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">';
+                    $activity->ShowActivitiesForUsers();
+                }else{
+                        echo '<div class="mt-12 text-center flex justify-center items-center mb-20">
+                         <div>
+                            <p class="text-gray-600 mb-10">Please log in to make a reservation</p>
+                            <a href="../autentification/login.php" class="bg-blue-900 text-white px-8 py-3 rounded-full hover:bg-blue-700 transition">
+                                Log in
+                            </a>
+                        </div>
+                        </div>';
+                }
                 ?>
                 
             </div>

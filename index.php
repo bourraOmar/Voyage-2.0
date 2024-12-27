@@ -39,9 +39,9 @@ session_start();
                     </li>
                 </ul>
             </div>
-            <?php if($_SESSION["role"] !== 1){ ?>
+            <?php if(isset($_SESSION["role"])){ ?>
             <div class="">
-                <a href=""><img width="25px" class="bg-white rounded-full" src="../Voyage-2.0/imgs/profile-major.svg" alt=""></a>
+                <a href="../Voyage-2.0/profiles/user_profile.php"><img width="25px" class="bg-white rounded-full" src="../Voyage-2.0/imgs/profile-major.svg" alt=""></a>
             </div>
             <?php }else{ ?>
             <div class="hidden md:flex items-center space-x-3">

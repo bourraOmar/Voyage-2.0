@@ -24,9 +24,11 @@ $userManager = new Users_manager();
         <div class="flex justify-between items-center mb-8 bg-blue-800 text-white p-4 rounded-lg">
             <h1 class="text-2xl font-bold">Admin Dashboard</h1>
             <div class="flex items-center">
-                <div class="mr-4">
+                <div class="mr-4 flex gap-6">
                     <span>Admin</span>
-                    <i class="fas fa-user-circle ml-2"></i>
+                    <div class="">
+                <a href="../profiles/admin_profile.php"><img width="25px" class="bg-white rounded-full" src="../imgs/profile-major.svg" alt=""></a>
+                    </div>
                 </div>
             </div>
         </div>
