@@ -1,4 +1,5 @@
 <?php
+require_once'utilisateur.php';
 class admin extends utilisateur{
   function manageUser(){
 
@@ -10,6 +11,6 @@ class admin extends utilisateur{
 
   }
   function banClient(){
-    
+
   }
 }
