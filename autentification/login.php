@@ -103,6 +103,23 @@
         </div>
     </section>
 
+    <?php
+    require_once '../connection/conn.php';
+    require_once 'utilisateur.php';
+
+    $authenticate = new utilisateur();
+    if($authenticate->authenticate($email, $password)){
+        if($_SERVER['email'] = 'admin@hgmail.com'){
+            header('Location: ../pages/dashboard_Admin.php');
+            exit();
+        }else{
+            header('Location: ../pages/user_profil.php');
+            exit();
+        }
+    }
+
+    ?>
+
     <!-- Footer -->
     <footer class="bg-blue-950 text-white">
         <div class="max-w-screen-xl px-4 py-8 mx-auto">
