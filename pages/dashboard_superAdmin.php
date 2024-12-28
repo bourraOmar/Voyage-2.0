@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once '../Activities/Activities_Create.php';
 require_once '../Activities/stats_management.php';
 require_once '../user_Management/user_manager.php';
@@ -6,6 +8,9 @@ require_once '../user_Management/user_manager.php';
 $showall = new Activities();
 $statsObject = new stats_Manager();
 $usermanage = new Users_manager();
+
+if(isset($_SESSION['role']) && $_SESSION['role'] == 1){
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -87,9 +92,9 @@ $usermanage = new Users_manager();
             </div>
             <div class="p-4">
                 <div class="flex justify-end mb-4">
-                    <button class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
-                        <i class="fas fa-plus mr-2"></i>Add User
-                    </button>
+                <button onclick="openUserModal()" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    <i class="fas fa-plus mr-2"></i>Add Admin
+                </button>
                 </div>
                 <table class="w-full">
                     <thead>
@@ -218,7 +223,88 @@ $usermanage = new Users_manager();
     </div>
 </div>
 
+<!-- userModal -->
+<div id="userModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white rounded-lg w-full max-w-lg p-6 m-4">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-bold">Add New User</h2>
+            <button onclick="closeUserModal()" class="text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <form id="userForm" class="space-y-4" method="POST" action="../user_Management/user_manager.php">
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-gray-700 mb-2">First Name</label>
+                    <input type="text" name="firstname" class="w-full border rounded-lg p-2" required>
+                </div>
+                <div>
+                    <label class="block text-gray-700 mb-2">Last Name</label>
+                    <input type="text" name="lastname" class="w-full border rounded-lg p-2" required>
+                </div>
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 mb-2">Email</label>
+                <input type="email" name="email" class="w-full border rounded-lg p-2" required>
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 mb-2">Password</label>
+                <input type="password" name="password" class="w-full border rounded-lg p-2" required>
+            </div>
+            
+            <div>
+                <label class="block text-gray-700 mb-2">Role</label>
+                <input type="text" name="Role" class="w-full border rounded-lg p-2" value="admin" readonly required>
+            </div>
+            
+            <div class="flex justify-end space-x-3 mt-6">
+                <button type="button" onclick="closeUserModal()" class="px-4 py-2 border rounded-lg hover:bg-gray-50">
+                    Cancel
+                </button>
+                <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700" name="addUser">
+                    Add Admin
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+function openUserModal() {
+    document.getElementById('userModal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeUserModal() {
+    document.getElementById('userModal').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    document.getElementById('userForm').reset();
+}
+
+document.getElementById('userModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeUserModal();
+    }
+});
+
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !document.getElementById('userModal').classList.contains('hidden')) {
+        closeUserModal();
+    }
+});
+</script>
+
 
     </div>
+
 </body>
 </html>
+<?php 
+}else{
+    header("Location: ../index.php");
+    exit();
+}
+?>
