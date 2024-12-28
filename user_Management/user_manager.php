@@ -1,4 +1,8 @@
 <?php 
+
+require_once '../connection/conn.php';
+require_once '../classes/utilisateur.php';
+
 class Users_manager{
     protected $pdo;
     protected $table = 'user';
@@ -73,12 +77,16 @@ class Users_manager{
                                 </td>';
                             }
                             echo '<td class="p-3">
+                            <a href="../user_Management/user_manager.php?resIDaccepte='. $row['reservation_id'] .'">
                                 <button class="text-green-500 hover:text-green-700 mr-2">
                                     <i class="fas fa-check"></i>
                                 </button>
+                            </a>
+                            <a href="../user_Management/user_manager.php?resIDrefuse='. $row['reservation_id'] .'">
                                 <button class="text-red-500 hover:text-red-700">
                                     <i class="fas fa-times"></i>
                                 </button>
+                            </a>
                             </td>
                         </tr>';
             }
@@ -104,6 +112,7 @@ class Users_manager{
         header('Location: ../index.php');
         exit();
     }
+    
 }
 
 if(isset($_GET['userid'])){
@@ -116,8 +125,70 @@ if(isset($_GET['userid'])){
     $userid = $_GET['userid'];
     $usermanager->BannedUser($userid);
 }
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
+if(isset($_POST['LogoutBTN'])){
     $usermanage = new Users_manager();
     $usermanage->userDisconnect();
+}
+
+if(isset($_GET['resIDaccepte'])){
+    $acceptedResID = $_GET['resIDaccepte'];
+
+    $connection = new DBconnect();
+    $pdo = $connection->connectpdo();
+
+    $sql = "UPDATE reservation
+            SET status = 'accepte'
+            WHERE reservation_id = :acceptedactivityid";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindparam('acceptedactivityid', $acceptedResID);
+    if($stmt->execute()){
+        if($_SESSION["role"] == 1){
+            header("location:../pages/dashboard_superAdmin.php");
+            exit();
+        }else{
+            header("location:../pages/dashboard_Admin.php");
+            exit();
+        }
+        
+    }
+    
+}
+
+if(isset($_GET['resIDrefuse'])){
+    $acceptedResID = $_GET['resIDrefuse'];
+
+    $connection = new DBconnect();
+    $pdo = $connection->connectpdo();
+
+    $sql = "UPDATE reservation
+            SET status = 'refuse'
+            WHERE reservation_id = :acceptedactivityid";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindparam('acceptedactivityid', $acceptedResID);
+    if($stmt->execute()){
+        if($_SESSION["role"] == 1){
+            header("location:../pages/dashboard_superAdmin.php");
+            exit();
+        }else{
+            header("location:../pages/dashboard_Admin.php");
+            exit();
+        }
+        
+    }
+    
+}
+
+if(isset($_POST['addUser'])){
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+
+    $user = new User();
+
+    if ($user->registerAdmin($firstname, $lastname, $email, $password)) {
+        header("location:../pages/dashboard_superAdmin.php");
+        exit();
+    }
 }
 ?>

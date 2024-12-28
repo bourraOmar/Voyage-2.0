@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    require_once '../Activities/Activities_Create.php';
+require_once '../Activities/Activities_Create.php';
 $activity = new Activities();
 ?>
 
@@ -22,7 +22,7 @@ $activity = new Activities();
             <h1 class="text-2xl font-bold">My Profile</h1>
 
             <form action="../user_Management/user_manager.php" method="post">
-            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center">
+            <button class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg flex items-center" name="LogoutBTN">
                 <i class="fas fa-sign-out-alt mr-2"></i>
                 Logout
             </button>

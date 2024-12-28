@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once '../connection/conn.php';
 
 class User {
@@ -8,6 +7,28 @@ class User {
     public function __construct() {
         $db = new DBconnect();
         $this->conn = $db->connectpdo();
+    }
+
+    public function registerAdmin($nom, $prenom, $email, $password) {
+        $stmt = $this->conn->prepare("SELECT * FROM User WHERE email = ?");
+        $stmt->bindParam(1, $email);
+        $stmt->execute();
+
+        if ($stmt->rowCount() > 0) {
+            return false;
+        } else {
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+            $stmt = $this->conn->prepare("INSERT INTO User (nom, prenom, email, password, status, role_id) VALUES (?, ?, ?, ?, 'active', 3)");
+            $stmt->bindParam(1, $nom);
+            $stmt->bindParam(2, $prenom);
+            $stmt->bindParam(3, $email);
+            $stmt->bindParam(4, $hashedPassword);
+            if ($stmt->execute()) {
+                return true;
+            } else {
+                return false;
+            }
+        }
     }
 
     public function register($nom, $prenom, $email, $password) {
@@ -33,7 +54,7 @@ class User {
     }
 
     public function authenticate($email, $password) {
-        $stmt = $this->conn->prepare("SELECT * FROM User WHERE email = ?");
+        $stmt = $this->conn->prepare("SELECT * FROM User WHERE email = ? AND status = 'active'");
         $stmt->bindParam(1, $email);
         $stmt->execute();
 
@@ -50,7 +71,7 @@ class User {
                 if ($user['email'] == 'superadmin@gmail.com') {
                     header("Location: ../pages/dashboard_superAdmin.php");
                     exit();
-                } else if ($user['email'] == 'admin@gmail.com') {
+                } else if ($user['role_id'] == 3) {
                     header("Location: ../pages/dashboard_Admin.php");
                     exit();
                 } else {

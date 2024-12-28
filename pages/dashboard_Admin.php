@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once '../Activities/Activities_Create.php';
 require_once '../Activities/stats_management.php';
 require_once '../user_Management/user_manager.php';
@@ -6,6 +8,10 @@ require_once '../user_Management/user_manager.php';
 $showall = new Activities();
 $statsObject = new stats_Manager();
 $userManager = new Users_manager();
+
+if(isset($_SESSION['role']) && $_SESSION['role'] !== 2){
+
+    
 ?>
 
 <!DOCTYPE html>
@@ -190,3 +196,9 @@ $userManager = new Users_manager();
 </div>
 </body>
 </html>
+<?php 
+}else{
+    header("Location: ../index.php");
+    exit();
+}
+?>
